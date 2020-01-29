@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="cep" version="8.0.5.0" xmlns:map="cep">
+    <input path="mbsharedlib://CepCorreios/AtendeCliente_InlineSchema1.xsd"/>
+    <output path="mbsharedlib://BuscaCepSL/GrcCep_InlineSchema1.xsd"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="in" uri="http://cliente.bean.master.sigep.bsb.correios.com.br/"/>
+        <namespace kind="supplement" prefix="out2" uri="http://webservice.Cep.gibs.com.br/Cep/v1"/>
+        <namespace kind="supplement" prefix="out" uri="http://canonico.Cep.gibs.com.br"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="buscaCep_GrcCep_map">
+        <input namespace="http://cliente.bean.master.sigep.bsb.correios.com.br/" path="mb:msg(consultaCEPResponse,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_consultaCEPResponse"/>
+        <output namespace="http://webservice.Cep.gibs.com.br/Cep/v1" path="mb:msg(buscaCepResponse,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_buscaCepResponse"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_consultaCEPResponse/Properties"/>
+            <output path="$ComIbmMessageAssembly_buscaCepResponse/Properties"/>
+            <override>
+                <assign value="{BuscaCepSL}">
+                    <output path="$ComIbmMessageAssembly_buscaCepResponse/Properties/MessageSet"/>
+                </assign>
+            </override>
+        </move>
+        <local>
+            <input path="$ComIbmMessageAssembly_consultaCEPResponse/consultaCEPResponse/return"/>
+            <output path="$ComIbmMessageAssembly_buscaCepResponse/buscaCepResponse/Cep"/>
+            <move>
+                <input path="bairro"/>
+                <output path="bairro"/>
+            </move>
+            <move>
+                <input path="cep"/>
+                <output path="cep"/>
+            </move>
+            <move>
+                <input path="cidade"/>
+                <output path="cidade"/>
+            </move>
+            <move>
+                <input path="complemento2"/>
+                <output path="complemento2"/>
+            </move>
+            <move>
+                <input path="end"/>
+                <output path="end"/>
+            </move>
+            <move>
+                <input path="uf"/>
+                <output path="uf"/>
+            </move>
+        </local>
+    </mappingDeclaration>
+</mappingRoot>

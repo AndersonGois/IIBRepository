@@ -1,0 +1,18 @@
+BROKER SCHEMA cep
+DECLARE ns2 NAMESPACE 'http://cliente.bean.master.sigep.bsb.correios.com.br/';
+DECLARE ns4 NAMESPACE 'http://canonico.Cep.gibs.com.br';
+DECLARE ns NAMESPACE 'http://webservice.Cep.gibs.com.br/Cep/v1';
+
+
+CREATE COMPUTE MODULE GrcCep_BuscaCep_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE inCep REFERENCE TO InputRoot.XMLNSC.ns:buscaCepRequest;
+		CREATE FIELD OutputRoot.XMLNSC.ns2:consultaCEP;		
+		DECLARE outCep REFERENCE TO OutputRoot.XMLNSC.ns2:consultaCEP;
+		SET outCep.cep = inCep.ns:consultaCep.ns4:cep;  
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

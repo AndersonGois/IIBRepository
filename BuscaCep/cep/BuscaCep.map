@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="cep" version="8.0.5.0" xmlns:map="cep">
+    <input path="mbsharedlib://BuscaCepSL/GrcCep_InlineSchema1.xsd"/>
+    <output path="mbsharedlib://BuscaCepSL/GrcCep_InlineSchema1.xsd"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="io" uri="http://canonico.Cep.gibs.com.br"/>
+        <namespace kind="supplement" prefix="io2" uri="http://webservice.Cep.gibs.com.br/Cep/v1"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="BuscaCep">
+        <input namespace="http://webservice.Cep.gibs.com.br/Cep/v1" path="mb:msg(buscaCepResponse,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_buscaCepResponse"/>
+        <output namespace="http://webservice.Cep.gibs.com.br/Cep/v1" path="mb:msg(buscaCepResponse,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_buscaCepResponse1"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_buscaCepResponse/Properties"/>
+            <output path="$ComIbmMessageAssembly_buscaCepResponse1/Properties"/>
+            <override>
+                <assign value="{BuscaCepSL}">
+                    <output path="$ComIbmMessageAssembly_buscaCepResponse1/Properties/MessageSet"/>
+                </assign>
+            </override>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_buscaCepResponse/buscaCepResponse/Cep/bairro"/>
+            <output path="$ComIbmMessageAssembly_buscaCepResponse1/buscaCepResponse/Cep/bairro"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_buscaCepResponse/buscaCepResponse/Cep/cep"/>
+            <output path="$ComIbmMessageAssembly_buscaCepResponse1/buscaCepResponse/Cep/cep"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_buscaCepResponse/buscaCepResponse/Cep/cidade"/>
+            <output path="$ComIbmMessageAssembly_buscaCepResponse1/buscaCepResponse/Cep/cidade"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_buscaCepResponse/buscaCepResponse/Cep/complemento2"/>
+            <output path="$ComIbmMessageAssembly_buscaCepResponse1/buscaCepResponse/Cep/complemento2"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_buscaCepResponse/buscaCepResponse/Cep/end"/>
+            <output path="$ComIbmMessageAssembly_buscaCepResponse1/buscaCepResponse/Cep/end"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_buscaCepResponse/buscaCepResponse/Cep/uf"/>
+            <output path="$ComIbmMessageAssembly_buscaCepResponse1/buscaCepResponse/Cep/uf"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

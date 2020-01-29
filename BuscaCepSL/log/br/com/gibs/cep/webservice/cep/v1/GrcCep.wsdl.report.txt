@@ -1,0 +1,24 @@
+
+
+Importing file: C:\Users\md2\Documents\JavaTestes\ProjetoValidacao\GrcCep.wsdl
+
+The WSDL import will proceed with bindings GerenciaCepSOAP.
+Creating wsdl schema document for file:///C:/Users/md2/Documents/JavaTestes/ProjetoValidacao/GrcCep.wsdl.
+Parsing wsdl binding {http://webservice.Cep.gibs.com.br/Cep/v1}GerenciaCepSOAP.
+Parsing wsdl binding input buscaCep.
+Parsing wsdl binding output buscaCep.
+Parsing wsdl binding fault fault.
+Processing doc style for operation buscaCep.
+Populating WSDL schema GrcCep.xsd.
+Creating file GrcCep.xsd in the workspace.
+Creating file GrcCep_InlineSchema1.xsd in the workspace.
+Creating file /BuscaCepSL/Cep.xsd in the workspace.
+Copying source WSDL GrcCep.wsdl to GrcCep.wsdl.
+
+Elapsed time processing this message definition file: 0.74 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

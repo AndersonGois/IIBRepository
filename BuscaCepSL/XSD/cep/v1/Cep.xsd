@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://canonico.Cep.gibs.com.br" xmlns:use="http://canonico.Cep.gibs.com.br">
+
+	<xsd:complexType name="ConsultaCepRequestType">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="cep" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ConsultaCepResponseType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="bairro" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cep" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="cidade" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="complemento2" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="end" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="uf" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>

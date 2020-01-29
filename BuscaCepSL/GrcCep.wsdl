@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GerenciaCep" targetNamespace="http://webservice.Cep.gibs.com.br/Cep/v1" xmlns:soap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://webservice.Cep.gibs.com.br/Cep/v1" xmlns:use="http://canonico.Cep.gibs.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="GrcCep_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="GerenciaCepSOAP" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+
+	<wsdl:types>
+		
+        	<xsd:schema elementFormDefault="qualified" targetNamespace="http://webservice.Cep.gibs.com.br/Cep/v1" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+
+<!-- <xsd:import namespace="http://canonico.Cep.gibs.com.br" schemaLocation="XSD/cep/v1/Cep.xsd"/> -->
+<xsd:include schemaLocation="GrcCep_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+
+	<wsdl:message name="buscaCepRequest">
+		<wsdl:part element="tns:buscaCepRequest" name="payload"/>
+	</wsdl:message>
+	<wsdl:message name="buscaCepResponse">
+		<wsdl:part element="tns:buscaCepResponse" name="payload"/>
+	</wsdl:message>
+
+	
+	<wsdl:portType name="GerenciaCepPortType">
+		<wsdl:operation name="buscaCep">
+			<wsdl:input message="tns:buscaCepRequest"/>
+			<wsdl:output message="tns:buscaCepResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="GerenciaCepSOAP" type="tns:GerenciaCepPortType">
+		<soap11:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+		<wsdl:operation name="buscaCep">
+			<soap11:operation soapAction="http://webservice.Cep.gibs.com.br/Cep/v1/buscaCep"/>
+			<wsdl:input>
+			 	<soap11:body parts="payload" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap11:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap11:fault name="fault"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="GerenciaCep">
+		<wsdl:port binding="tns:GerenciaCepSOAP" name="GerenciaCepSOAP">
+			<soap11:address location="http://wsphttp.dsv.com.br/teste"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

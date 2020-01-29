@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="cep" version="8.0.5.0" xmlns:map="cep">
+    <input path="mbsharedlib://BuscaCepSL/GrcCep_InlineSchema1.xsd"/>
+    <output path="mbsharedlib://CepCorreios/AtendeCliente_InlineSchema1.xsd"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="in" uri="http://canonico.Cep.gibs.com.br"/>
+        <namespace kind="supplement" prefix="in2" uri="http://webservice.Cep.gibs.com.br/Cep/v1"/>
+        <namespace kind="supplement" prefix="out" uri="http://cliente.bean.master.sigep.bsb.correios.com.br/"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="GrcCep_BuscaCep_Map">
+        <input namespace="http://webservice.Cep.gibs.com.br/Cep/v1" path="mb:msg(buscaCepRequest,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_buscaCepRequest"/>
+        <output namespace="http://cliente.bean.master.sigep.bsb.correios.com.br/" path="mb:msg(consultaCEP,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_consultaCEP"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_buscaCepRequest/Properties"/>
+            <output path="$ComIbmMessageAssembly_consultaCEP/Properties"/>
+            <override>
+                <assign value="{CepCorreios}">
+                    <output path="$ComIbmMessageAssembly_consultaCEP/Properties/MessageSet"/>
+                </assign>
+            </override>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_buscaCepRequest/buscaCepRequest/consultaCep/cep"/>
+            <output path="$ComIbmMessageAssembly_consultaCEP/consultaCEP/cep"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>
